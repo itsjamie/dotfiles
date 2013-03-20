@@ -1,1 +1,1 @@
-/Users/jstackhouse/.bashrc
+. `brew --prefix`/etc/profile.d/z.sh
