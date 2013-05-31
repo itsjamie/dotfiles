@@ -1,11 +1,13 @@
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+  . `brew --prefix`/etc/bash_completion
 fi
-alias ls="ls -G"
+if [ -f ~/.bashrc ]; then
+  source ~/.bashrc
+fi
+. `brew --prefix`/etc/profile.d/z.sh
 alias g="git"
 alias gf="git flow"
 alias gs="git status"
-function _update_ps1() {
-  export PS1="$(~/powerline-shell.py $?)"
-}
-export PROMPT_COMMAND="_update_ps1"
+alias ls="ls -G"
+alias phpmamp="/Applications/MAMP/bin/php/php5.4.10/bin/php"
+
