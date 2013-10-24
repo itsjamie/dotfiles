@@ -104,3 +104,7 @@ else \
   # @2 - Prompt when not in GIT repo
   echo " '$Yellow$PathShort$ICyan'\$'$Color_Off' "; \
 fi)'
+
+export CLICOLOR=1
+
+export LSCOLORS=ExFxBxDxCxegedabagacad
