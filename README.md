@@ -1,12 +1,18 @@
 # Setting up a new computer guide
 
-## Install Apache
+## Setup dotfiles..
 ```
-brew tap djl/homebrew-apache2
-brew install djl/apache2/apache22
+mkdir ~/Repositories && cd ~/Repositories
+git clone https://github.com/jamie-stackhouse/dotfiles
+ln -s dotfiles/.vimrc ~/.vimrc
+ln -s dotfiles/.bash_profile ~/.bash_profile
+ln -s dotfiles/.bashrc ~/.bashrc
 ```
 
 ## Homebrew list
+```
+ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+```
 * bash-completion
 * git
 * git-flow
@@ -14,3 +20,9 @@ brew install djl/apache2/apache22
 * vim
 * virtualhost.sh
 * z
+
+## Install Apache
+```
+brew tap djl/homebrew-apache2
+brew install djl/apache2/apache22
+```
