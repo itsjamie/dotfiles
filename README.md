@@ -1,8 +1,8 @@
 ## Homebrew list
-bash-completion
-git
-git-flow
-node
-vim
-virtualhost.sh
-z
+* bash-completion
+* git
+* git-flow
+* node
+* vim
+* virtualhost.sh
+* z
