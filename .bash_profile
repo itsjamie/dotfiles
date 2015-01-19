@@ -1,16 +1,38 @@
-# Setup PATH for Homebrew and NodeJS.
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin
+# Load ~/.extra ~/.bash_prompt ~/.exports ~/.aliases and ~/.functions
+# ~/.extra can be used for settings you don't want to commit.
+for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
+  [ -r "$file" ] && source "$file"
+done
+unset file
 
+# initialize z
+. `brew --prefix`/etc/profile.d/z.sh
+
+# bash completion
 if [ -f `brew --prefix`/etc/bash_completion ]; then
   . `brew --prefix`/etc/bash_completion
 fi
 
-source /Users/jstackhouse/.bashrc
+# Case insensitive globbing
+shopt -s nocaseglob
 
-. `brew --prefix`/etc/profile.d/z.sh
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
 
-alias g="git"
-alias gf="git flow"
-alias gs="git status"
-alias phpmamp="/Applications/MAMP/bin/php/php5.4.10/bin/php"
+# Add tab completion for `defaults read|write NSGlobalDomain`
+# You could just use `-g` instead, but I like being explicit
+complete -W "NSGlobalDomain" defaults
 
+export NPM_HOME=/usr/local/share/npm
+export GOPATH=~/go
+
+PATH=/usr/bin:/bin:/usr/sbin:/sbin:$PATH
+
+# Add NPM packages to path
+PATH=$PATH:$NPM_HOME/bin
+
+# Add Go packages to path
+PATH=$PATH:$GOPATH/bin
+
+# Homebrew executables are important
+export PATH=/usr/local/bin:$PATH
