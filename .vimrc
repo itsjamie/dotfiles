@@ -18,6 +18,9 @@ Bundle "airblade/vim-rooter"
 Bundle "kien/ctrlp.vim"
 Bundle "tpope/vim-surround"
 
+" Golang Plugin
+Bundle 'fatih/vim-go'
+
 " Customized Look
 Bundle "bling/vim-airline"
 Bundle "Lokaltog/vim-distinguished"
@@ -31,13 +34,10 @@ map <S-TAB> <ESC>gT<CR>
 "Gitv Setup
 let g:Gitv_OpenHorizontal="auto"
 
-"NerdTree Setup
-nnoremap <silent> <S-t> <ESC>:NERDTreeToggle<CR>
-let NERDTreeShowHidden=1
-
 "Airline Setup
 let g:airline_powerline_fonts=1
 
+set completeopt-=preview
 set number
 set ts=2
 set laststatus=2
