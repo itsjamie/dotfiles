@@ -35,7 +35,7 @@ brew install ossp-uuid
 brew install postgresql
 brew install redis
 brew install vim
-brew install virtualhost.shå
+brew install virtualhost.sh
 brew install wrk
 brew install z
 
