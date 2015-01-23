@@ -1,7 +1,7 @@
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-./brew.sh
-./brew-cash.sh
+source brew.sh
+source brew-casks.sh
 
 # for the c alias (syntax highlighted cat)
 sudo easy_install Pygments
