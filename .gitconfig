@@ -1,0 +1,45 @@
+[color]
+  ui = always
+
+[core]
+  excludesfile = ~/.gitignore
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[merge]
+  tool = opendiff
+
+# rewrites
+[url "git@github.com:"]
+  insteadOf = "gh:"
+  pushInsteadOf = "github:"
+  pushInsteadOf = "git://github.com/"
+  pushInsteadOf = "https://github.com"
+[url "git://github.com/"]
+  insteadOf = "github:"
+[url "git@gist.github.com:"]
+  insteadOf = "gst:"
+  pushInsteadOf = "gist:"
+  pushInsteadOf = "git://gist.github.com/"
+[url "git://gist.github.com/"]
+  insteadOf = "gist:"
+
+[url "git@github.com:jamie-stackhouse/"]
+  insteadOf = "git://github.com/jamie-stackhouse/"
+
+[help]
+  autocorrect = 1

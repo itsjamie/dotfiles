@@ -26,7 +26,9 @@ complete -W "NSGlobalDomain" defaults
 export NPM_HOME=/usr/local/share/npm
 export GOPATH=~/go
 
-PATH=/usr/bin:/bin:/usr/sbin:/sbin:$PATH
+PATH=/usr/bin:/bin:/usr/sbin:/sbin
+# Updated GNU Core Utilities
+PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
 
 # Add NPM packages to path
 PATH=$PATH:$NPM_HOME/bin
