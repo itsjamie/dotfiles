@@ -28,9 +28,6 @@ export GOPATH=~/go
 
 PATH=/usr/bin:/bin:/usr/sbin:/sbin
 
-# Updated GNU Core Utilities
-PATH=`brew --prefix coreutils`/libexec/gnubin:$PATH
-
 # Add NPM packages to path
 PATH=$PATH:$NPM_HOME/bin
 
@@ -38,4 +35,7 @@ PATH=$PATH:$NPM_HOME/bin
 PATH=$PATH:$GOPATH/bin
 
 # Homebrew executables are important
-export PATH=/usr/local/bin:$PATH
+PATH=/usr/local/bin:$PATH
+# Updated GNU Core Utilities
+PATH=`brew --prefix coreutils`/libexec/gnubin:$PATH
+export PATH
