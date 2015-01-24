@@ -18,4 +18,3 @@ export HISTTIMEFORMAT='%F %T '
 
 # Make some common commands not show in history
 export HISTIGNORE="ls:cd:cd -:pwd;exit:date:* --help"
-export HOMEBREW_CASK_OPTS="--appdir=/Applications"
