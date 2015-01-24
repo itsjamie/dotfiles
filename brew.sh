@@ -26,7 +26,9 @@ brew install ack
 # Other useful binaries
 brew install vim --override-system-vi
 brew install ffmpeg --with-libvpx
+brew install hg
 brew install git
+brew install svn
 brew install go
 brew install mongo
 brew install ngrep
