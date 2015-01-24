@@ -5,24 +5,24 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin "gmarik/Vundle.vim"
+Plugin 'gmarik/Vundle.vim'
 
 " Git
-Plugin "tpope/vim-fugitive"
+Plugin 'tpope/vim-fugitive'
 
 " General Vim improvements
-Plugin "airblade/vim-rooter"
-Plugin "kien/ctrlp.vim"
-Plugin "tpope/vim-surround"
+Plugin 'airblade/vim-rooter'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-surround'
 
 " Golang Plugin
 Plugin 'fatih/vim-go'
 
 " Customized Look
-Plugin "bling/vim-airline"
-Plugin "Lokaltog/vim-distinguished"
-Plugin "chrisbra/Colorizer.git"
-Plugin "vim-scripts/TagHighlight"
+Plugin 'bling/vim-airline'
+Plugin 'Lokaltog/vim-distinguished'
+Plugin 'chrisbra/Colorizer.git'
+Plugin 'vim-scripts/TagHighlight'
 
 call vundle#end()
 filetype plugin indent on
