@@ -20,5 +20,9 @@ source .bash_profile
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle.vim
 vim +PluginInstall +qall
 
+cd ~/.vim/bundle/YouCompleteMe
+./install.sh --clang-completer
+cd -
+
 # Install Golang tools
 go get golang.org/x/tools/cmd/...
