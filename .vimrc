@@ -1,38 +1,35 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+" Set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle "gmarik/vundle"
+Plugin "gmarik/Vundle.vim"
 
-Bundle "pangloss/vim-javascript"
-Bundle "groenewege/vim-less"
-Bundle "tpope/vim-fugitive"
-Bundle "gregsexton/gitv"
+" Git
+Plugin "tpope/vim-fugitive"
 
 " General Vim improvements
-Bundle "scrooloose/nerdtree"
-Bundle "jistr/vim-nerdtree-tabs"
-Bundle "airblade/vim-rooter"
-Bundle "kien/ctrlp.vim"
-Bundle "tpope/vim-surround"
+Plugin "airblade/vim-rooter"
+Plugin "kien/ctrlp.vim"
+Plugin "tpope/vim-surround"
 
 " Golang Plugin
-Bundle 'fatih/vim-go'
+Plugin 'fatih/vim-go'
 
 " Customized Look
-Bundle "bling/vim-airline"
-Bundle "Lokaltog/vim-distinguished"
-Bundle "chrisbra/color_highlight.git"
-Bundle "vim-scripts/TagHighlight"
+Plugin "bling/vim-airline"
+Plugin "Lokaltog/vim-distinguished"
+Plugin "chrisbra/Colorizer.git"
+Plugin "vim-scripts/TagHighlight"
+
+call vundle#end()
+filetype plugin indent on
 
 "Tabs
 map <TAB> <ESC>gt<CR>
 map <S-TAB> <ESC>gT<CR>
-
-"Gitv Setup
-let g:Gitv_OpenHorizontal="auto"
 
 "Airline Setup
 let g:airline_powerline_fonts=1
@@ -55,9 +52,5 @@ set t_Co=256
 set colorcolumn=80
 set guifont=Inconsolata:h16
 
-
 colorscheme Distinguished
-
-filetype plugin indent on
-
 set backspace=indent,eol,start
