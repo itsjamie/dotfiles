@@ -26,3 +26,8 @@ cd -
 
 # Install Golang tools
 go get golang.org/x/tools/cmd/...
+go get code.google.com/p/rog-go/exp/cmd/godef
+go get github.com/kisielk/errcheck
+go get github.com/golang/lint/golint
+go get github.com/jstemmer/gotags
+go get github.com/nsf/gocode
