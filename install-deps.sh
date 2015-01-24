@@ -16,3 +16,6 @@ echo $BASH_VERSION # should be 4.x not the old 3.2.X
 # Install Vundle for Vim
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/vundle.vim
 vim +PluginInstall +qall
+
+# Install Golang tools
+go get golang.org/x/tools/cmd/...
