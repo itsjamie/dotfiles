@@ -23,6 +23,9 @@
 [merge]
   tool = opendiff
 
+[push]
+  default = simple 
+
 # rewrites
 [url "git@github.com:"]
   insteadOf = "gh:"
