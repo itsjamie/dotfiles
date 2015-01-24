@@ -15,6 +15,15 @@ Plugin 'airblade/vim-rooter'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-surround'
 
+" Autocomplete
+Plugin 'Valloric/YouCompleteMe'
+
+" Class Overviewer
+Plugin 'majutsushi/tagbar'
+
+" Snippet Engine
+Plugin 'SirVer/ultisnips'
+
 " Golang Plugin
 Plugin 'fatih/vim-go'
 
@@ -54,3 +63,16 @@ set guifont=Inconsolata:h16
 
 colorscheme Distinguished
 set backspace=indent,eol,start
+
+"Golang settings
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>r <Plug>(go-run)
+au FileType go nmap <Leader>b <Plug>(go-build)
+au FileType go nmap <Leader>t <Plug>(go-test)
+au FileType go nmap <Leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>e <Plug>(go-rename)
