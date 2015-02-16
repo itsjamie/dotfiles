@@ -1,10 +1,3 @@
-# Load ~/.extra ~/.bash_prompt ~/.exports ~/.aliases and ~/.functions
-# ~/.extra can be used for settings you don't want to commit.
-for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
-  [ -r "$file" ] && source "$file"
-done
-unset file
-
 # initialize z
 . `brew --prefix`/etc/profile.d/z.sh
 
@@ -40,3 +33,10 @@ PATH=/usr/local/bin:$PATH
 # Updated GNU Core Utilities
 PATH=`brew --prefix coreutils`/libexec/gnubin:$PATH
 export PATH
+
+# Load ~/.extra ~/.bash_prompt ~/.exports ~/.aliases and ~/.functions
+# ~/.extra can be used for settings you don't want to commit.
+for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
+  [ -r "$file" ] && source "$file"
+done
+unset file
