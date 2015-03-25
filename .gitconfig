@@ -27,8 +27,8 @@
   default = simple 
 
 [user]
-  name = jstackhouse
-  email = jamie@stackhouse.me
+  name = Jamie Stackhouse
+  email = itsjamie.stackhouse@gmail.com
 
 # rewrites
 [url "git@github.com:"]
@@ -45,8 +45,8 @@
 [url "git://gist.github.com/"]
   insteadOf = "gist:"
 
-[url "git@github.com:jamie-stackhouse/"]
-  insteadOf = "git://github.com/jamie-stackhouse/"
+[url "git@github.com:itsjamie/"]
+  insteadOf = "git://github.com/itsjamie/"
 
 [help]
   autocorrect = 1
