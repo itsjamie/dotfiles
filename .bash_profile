@@ -16,6 +16,7 @@ shopt -s nocaseglob
 # You could just use `-g` instead, but I like being explicit
 complete -W "NSGlobalDomain" defaults
 
+export EDITOR=/usr/local/bin/vim
 export NPM_HOME=/usr/local/share/npm
 export GOPATH=~/go
 export GOBIN=$GOPATH/bin

@@ -3,7 +3,7 @@
 
 [core]
   excludesfile = ~/.gitignore
-  editor = vim
+  editor = /usr/local/bin/vim
 
 [color "branch"]
   current = yellow reverse
