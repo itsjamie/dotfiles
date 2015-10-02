@@ -29,10 +29,11 @@ fi
 alias ls='CLICOLOR_FORCE=1 ls -Fh ${colorflag}'
 
 # List all files colorized in long format, including dot files
-alias la="ls -laF ${colorflag}"
+alias la="ls -lAF ${colorflag}"
 
 # List only directories
-alias lsd='ls -l | grep "^d"'
+alias lsd='la | grep "^d"'
+
 
 # Get IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -50,6 +51,7 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 alias g="git"
 alias gs="git status"
 
+# Use VIM not Vi
 alias v="vim"
 
 # File size
@@ -64,6 +66,3 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
 # Hide/show all desktop icons (useful when presenting)
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
-
-# Funny :D
-alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'Stop all the downloading!'"

@@ -51,3 +51,5 @@
 
 [help]
   autocorrect = 1
+[url "ssh://git@stash.redspace.com/"]
+	insteadOf = https://stash.redspace.com/scm/

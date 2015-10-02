@@ -24,7 +24,7 @@ brew install homebrew/dupes/screen
 brew install ack
 
 # Other useful binaries
-brew install vim --override-system-vi
+brew install macvim --with-override-system-vim
 brew install ffmpeg --with-libvpx
 brew install hg
 brew install git
@@ -36,7 +36,6 @@ brew install node
 brew install ossp-uuid
 brew install postgresql
 brew install redis
-brew install vim
 brew install virtualhost.sh
 brew install wrk
 brew install z

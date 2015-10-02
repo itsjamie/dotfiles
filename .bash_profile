@@ -19,7 +19,6 @@ complete -W "NSGlobalDomain" defaults
 export EDITOR=/usr/local/bin/vim
 export NPM_HOME=/usr/local/share/npm
 export GOPATH=~/go
-export GOBIN=$GOPATH/bin
 
 PATH=/usr/bin:/bin:/usr/sbin:/sbin
 

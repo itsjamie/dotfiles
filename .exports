@@ -18,3 +18,23 @@ export HISTTIMEFORMAT='%F %T '
 
 # Make some common commands not show in history
 export HISTIGNORE="ls:cd:cd -:pwd;exit:date:* --help"
+
+export EDITOR=/usr/local/bin/vim
+export NPM_HOME=/usr/local/share/npm
+export GOPATH=~/go
+
+# Construct Path..
+PATH=/usr/bin:/bin:/usr/sbin:/sbin
+
+# Add NPM packages to path
+PATH=$PATH:$NPM_HOME/bin
+
+# Add Go packages to path
+PATH=$PATH:$GOPATH/bin
+
+# Homebrew executables are important
+PATH=/usr/local/bin:$PATH
+# Updated GNU Core Utilities
+PATH=`brew --prefix coreutils`/libexec/gnubin:$PATH
+
+export PATH
