@@ -4,22 +4,6 @@ alias ~="cd ~"
 
 alias hosts='sudo $EDITOR /etc/hosts'
 
-# Less Typing Brew sub-commands
-alias cask='brew cask'
-
-# colorize outputs
-GRC=`which grc`
-if [ "$TERM" != dumb ] && [ -n "$GRC" ]; then
-  alias colourify="$GRC -es --colour=auto"
-  alias configure='colourify ./configure'
-  alias make='colourify make'
-  alias gcc='colourify gcc'
-  alias g++='colourify g++'
-  alias netstat='colourify netstat'
-  alias ping='colourify ping'
-  alias traceroute='colourify /usr/sbin/traceroute'
-fi
-
 # Detect which ls in use
 if ls --color > /dev/null 2>&1; then # GNU
   colorflag="--color"
@@ -51,8 +35,9 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 alias g="git"
 alias gs="git status"
 
-# Use VIM not Vi
-alias v="vim"
+# Use NeoVim
+alias vi="nvim"
+alias vim="nvim" 
 
 # File size
 alias fs="stat -f \"%z bytes\""
