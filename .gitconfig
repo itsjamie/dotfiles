@@ -1,9 +1,15 @@
-[color]
-  ui = always
-
 [core]
   excludesfile = ~/.gitignore
-  editor = /usr/local/bin/vim
+  editor = /usr/local/bin/nvim
+
+[include]
+	path = gitconfig.local
+
+[help]
+	autocorrect = 1
+
+[color]
+  ui = always
 
 [color "branch"]
   current = yellow reverse
@@ -11,10 +17,10 @@
   remote = green
 
 [color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old = red bold
-  new = green bold
+  meta = yellow
+  frag = magenta
+  old = red 
+  new = green
 
 [color "status"]
   added = yellow
@@ -29,27 +35,10 @@
 
 [user]
   name = Jamie Stackhouse
-  email = contin673+git@gmail.com
+  email = (none)
 
 # rewrites
-[url "git@github.com:"]
-  insteadOf = "gh:"
-  pushInsteadOf = "github:"
-  pushInsteadOf = "git://github.com/"
-  pushInsteadOf = "https://github.com"
-[url "git://github.com/"]
-  insteadOf = "github:"
-[url "git@gist.github.com:"]
-  insteadOf = "gst:"
-  pushInsteadOf = "gist:"
-  pushInsteadOf = "git://gist.github.com/"
-[url "git://gist.github.com/"]
-  insteadOf = "gist:"
-
 [url "git@github.com:itsjamie/"]
   insteadOf = "git://github.com/itsjamie/"
-
-[help]
-  autocorrect = 1
 [url "ssh://git@stash.redspace.com/"]
 	insteadOf = https://stash.redspace.com/scm/
