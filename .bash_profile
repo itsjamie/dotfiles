@@ -1,9 +1,13 @@
 # initialize z
 . `brew --prefix`/etc/profile.d/z.sh
+# initialize nvm
+[ -s `brew --prefix nvm`/nvm.sh ] && source `brew --prefix nvm`/nvm.sh
+# setup colour on log files and other various basic tools
+[ -s `brew --prefix`/etc/grc.bashrc ] && source `brew --prefix`/etc/grc.bashrc
 
 # bash completion
-if [ -f $(brew --prefix)/share/bash-completion/bash_completion ]; then
-  . $(brew --prefix)/share/bash-completion/bash_completion
+if [ -f `brew --prefix`/share/bash-completion/bash_completion ]; then
+  . `brew --prefix`/share/bash-completion/bash_completion
 fi
 
 # Case insensitive globbing
@@ -16,23 +20,24 @@ shopt -s nocaseglob
 # You could just use `-g` instead, but I like being explicit
 complete -W "NSGlobalDomain" defaults
 
-export EDITOR=/usr/local/bin/vim
+export EDITOR=/usr/local/bin/nvim
+export NVM_DIR=~/.nvm
 export NPM_HOME=/usr/local/share/npm
 export GOPATH=~/go
 
-PATH=/usr/bin:/bin:/usr/sbin:/sbin
-
-# Add NPM packages to path
+PATH=/usr/bin:/bin:/usr/sbin:/sbin:$PATH
+# Add NPM binares to path
 PATH=$PATH:$NPM_HOME/bin
-
-# Add Go packages to path
+# Add Go binaries to path
 PATH=$PATH:$GOPATH/bin
-
-# Homebrew executables are important
-PATH=/usr/local/bin:$PATH
-# Updated GNU Core Utilities
-PATH=`brew --prefix coreutils`/libexec/gnubin:$PATH
+# Add GOROOT binaries to path
+PATH=$PATH:/usr/local/opt/go/libexec/bin
+# Add Homebrew binaries to path, with priority
+PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH
+
+# Add completion to gulp tasks
+eval "$(gulp --completion=bash)"
 
 # Load ~/.extra ~/.bash_prompt ~/.exports ~/.aliases and ~/.functions
 # ~/.extra can be used for settings you don't want to commit.
