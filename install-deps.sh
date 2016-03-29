@@ -15,21 +15,29 @@ curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 source brew.sh
 source brew-cask.sh
-source osx.sh
 # for the c alias (syntax highlighted cat)
 sudo easy_install Pygments
 
 # change to bash 4 (installed by homebrew)
-BASHPATH=`brew --prefix`/bin/bash
+BASHPATH=/usr/local/bin/bash
 sudo sh -c "echo $BASHPATH >> /etc/shells"
 chsh -s $BASHPATH # will set for current user only.
 echo $BASH_VERSION # should be 4.x not the old 3.2.X
-# For the below commands
-source ~/.bash_profile
+
+git clone https://github.com/creationix/nvm.git ~/.nvm && cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`
+. ~/.nvm/nvm.sh
 
 # Install Golang tools
-go get golang.org/x/tools/cmd/...
+/usr/local/bin/go get -v golang.org/x/tools/cmd/...
 # Install neovim plugins
-nvim +PlugInstall +qall
+pip3 install neovim
+/usr/local/bin/nvim +PlugInstall +qall
+/usr/local/bin/nvim +UpdateRemotePlugins +qall
 # Install vim-go binaries
-nvim +GoInstallBinaries +qall
+/usr/local/bin/nvim +GoInstallBinaries +qall
+
+nvm install v5.9.1
+npm install -g gulp
+
+sudo ${PWD}/osx.sh
+

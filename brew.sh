@@ -2,7 +2,7 @@ brew update && brew upgrade
 # Install GNU core utilities (OSX ones are outdated)
 brew install coreutils
 # Install GNU `sed` overwriting OSX sed
-brew install gnu-sed --default-names
+brew install gnu-sed --with-default-names
 # Install Bash 4
 # Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before running `chsh`.
 brew install bash
@@ -11,7 +11,7 @@ brew install bash
 brew tap homebrew/versions
 brew install homebrew/versions/bash-completion2
 brew install grc
-brew install wget --enable-iri
+brew install wget --with-iri
 
 # Other useful packages
 brew install ack
@@ -22,10 +22,9 @@ brew install svn
 brew install go
 brew install mongo
 brew install python3
-brew install neovim
+brew install neovim/neovim/neovim --HEAD
 brew install python
 brew install ngrep
-brew install nvm
 brew install ossp-uuid
 brew install postgresql
 brew install redis

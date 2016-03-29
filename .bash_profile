@@ -1,15 +1,3 @@
-# initialize z
-. `brew --prefix`/etc/profile.d/z.sh
-# initialize nvm
-[ -s `brew --prefix nvm`/nvm.sh ] && source `brew --prefix nvm`/nvm.sh
-# setup colour on log files and other various basic tools
-[ -s `brew --prefix`/etc/grc.bashrc ] && source `brew --prefix`/etc/grc.bashrc
-
-# bash completion
-if [ -f `brew --prefix`/share/bash-completion/bash_completion ]; then
-  . `brew --prefix`/share/bash-completion/bash_completion
-fi
-
 # Case insensitive globbing
 shopt -s nocaseglob
 
@@ -21,13 +9,11 @@ shopt -s nocaseglob
 complete -W "NSGlobalDomain" defaults
 
 export EDITOR=/usr/local/bin/nvim
-export NVM_DIR=~/.nvm
-export NPM_HOME=/usr/local/share/npm
 export GOPATH=~/go
+export NVM_DIR=~/.nvm
+[ -s "$NVMDIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 PATH=/usr/bin:/bin:/usr/sbin:/sbin:$PATH
-# Add NPM binares to path
-PATH=$PATH:$NPM_HOME/bin
 # Add Go binaries to path
 PATH=$PATH:$GOPATH/bin
 # Add GOROOT binaries to path
@@ -35,6 +21,16 @@ PATH=$PATH:/usr/local/opt/go/libexec/bin
 # Add Homebrew binaries to path, with priority
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH
+
+# initialize z
+. `brew --prefix`/etc/profile.d/z.sh
+# setup colour on log files and other various basic tools
+[ -s `brew --prefix`/etc/grc.bashrc ] && source `brew --prefix`/etc/grc.bashrc
+
+# bash completion
+if [ -f `brew --prefix`/share/bash-completion/bash_completion ]; then
+  . `brew --prefix`/share/bash-completion/bash_completion
+fi
 
 # Add completion to gulp tasks
 eval "$(gulp --completion=bash)"

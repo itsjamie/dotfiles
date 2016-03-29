@@ -97,22 +97,31 @@ imap <M-R> <esc>:CtrlPBufTagAll<cr>
 nmap <M-t> :CtrlP<cr>
 imap <M-t> <esc>:CtrlP<cr>
 
-
-
 " DEOPLETE SETUP
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#ignore_sources = {}
 let g:deoplete#ignore_sources._ = ['buffer', 'member', 'tag', 'file']
 let g:deoplete#sources#go#sort_class = ['func', 'type', 'var', 'const']
 
-  " Use partial fuzzy matches like YouCompleteMe
-  call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
+" Use partial fuzzy matches like YouCompleteMe
+call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
 
 " NERDTREE SETUP
 noremap <Leader>n :NERDTreeToggle<cr>
 noremap <Leader>f :NERDTreeFind<cr>
 
 let NERDTreeShowHidden=1
+
+" vim-go
+let g:go_fmt_fail_silently = 0
+let g:go_fmt_command = "goimports"
+let g:go_autodetect_gopath = 1
+let g:go_term_enabled = 1
+let g:go_highlight_space_tab_error = 0
+let g:go_highlight_array_whitespace_error = 0
+let g:go_highlight_trailing_whitespace_error = 0
+let g:go_highlight_operators = 0
+let g:go_highlight_build_constraints = 1
 
 " VIM-JSON SETUP
 let g:vim_json_syntax_conceal = 0
