@@ -18,7 +18,6 @@ alias la="ls -lAF ${colorflag}"
 # List only directories
 alias lsd='la | grep "^d"'
 
-
 # Get IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en1"
@@ -51,3 +50,6 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
 # Hide/show all desktop icons (useful when presenting)
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+# Go Aliases
+alias gta="go test $(go list ./... | grep -v \/vendor\/)"
