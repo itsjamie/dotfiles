@@ -11,7 +11,7 @@ complete -W "NSGlobalDomain" defaults
 export EDITOR=/usr/local/bin/nvim
 export GOPATH=~/go
 export NVM_DIR=~/.nvm
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 PATH=/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 # Add Go binaries to path

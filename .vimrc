@@ -1,24 +1,33 @@
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.config/plugged')
+" ColorScheme of choice
 Plug 'tomasr/molokai'
+
+" Add IDE-like features
+Plug 'fatih/vim-go'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'fatih/vim-go'
-Plug 'Shougo/deoplete.nvim' | Plug 'zchee/deoplete-go', {'for': 'go', 'do': 'make'}
+Plug 'tpope/vim-commentary'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-
 " filetype plugins
 Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
 Plug 'fatih/vim-nginx' , {'for' : 'nginx'}
 Plug 'corylanou/vim-present', {'for' : 'present'}
+
+"Plugins that change if in neovim or in vim
+if has('nvim')
+	Plug 'Shougo/deoplete.nvim' | Plug 'zchee/deoplete-go', { 'do': 'make' }
+else
+	Plug 'Shougo/neocomplete.vim'
+endif
+
 call plug#end()
+" Plug 'garyburd/go-explorer', { 'for': 'go', 'do': 'go get github.com/garyburd/go-explorer/src/getool' }
 
-
-" Document the defaults in nvim, and if we use this config in vim, they'll be set
+"Document the defaults in nvim, and if we use this config in vim, they'll be set
 if !has('nvim')
   set nocompatible
-  filetype off
-  filetype plugin indent on
   set ttyfast
   set ttymouse=xterm2
   set ttyscroll=3
@@ -34,15 +43,30 @@ if !has('nvim')
   set incsearch
   set langnoremap
   set laststatus=2
-  set listchars=tab:> ,trail:-,nbsp:+
+  set listchars=tab:»·,trail:·,nbsp:·
   set mouse=a
   set nrformats=bin,hex
   set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize
   set smarttab
-  set tabpagemux=50
   set tags=./tags;,tags
   set viminfo=!,'100,<50,s10,h
   set wildmenu
+	
+	set t_Co=256
+
+	filetype plugin indent on
+	let g:neocomplete#data_directory = "~/.cache/neocomplete"
+	let g:neocomplete#enable_at_startup = 1
+else
+	" DEOPLETE SETUP
+	let g:deoplete#enable_at_startup = 1
+	let g:deoplete#ignore_sources = {}
+	let g:deoplete#ignore_sources.go = ['buffer', 'member', 'tag', 'file']
+	let g:deoplete#sources#go#align_class = 1
+	let g:deoplete#sources#go#package_dot = 1
+
+	" Use partial fuzzy matches like YouCompleteMe
+	call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
 endif
 
 set noerrorbells
@@ -60,7 +84,6 @@ set nocursorline
 set noshowmode " show the mode with statusplugin
 set ignorecase " Search case insensitive ...
 set smartcase " ... but not if it begins with upper case
-set completeopt=menu,menuone
 set pumheight=10 " completion window max size
 set clipboard^=unnamed
 set clipboard^=unnamedplus
@@ -70,12 +93,16 @@ set synmaxcol=300
 set re=1
 set ts=2
 set sw=2
+set cmdheight=2
+set completeopt+=menuone
 set completeopt-=preview
 set relativenumber
+set number
 set guifont=Source\ Code\ Pro\ Light\ for\ Powerline:h12
 let g:rehash256 = 1
-set background=dark
+syntax on 
 colorscheme molokai
+set background=dark
 
 autocmd BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
 au BufNewFile,BufRead *.vim setlocal noet ts=2 sw=2 sts=2
@@ -83,21 +110,20 @@ au BufNewFile,BufRead *.txt setlocal noet ts=4 sw=4
 au BufNewFile,BufRead *.md setlocal noet ts=4 sw=4
 autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
 
-nnoremap <silent> <F5> :source $MYVIMRC<CR>
 let mapleader = ","
 let g:mapleader = ","
 
 " Open goto symbol on current buffer
-nmap <M-r> :MyCtrlPTag<cr>
-imap <M-r> <esc>:MyCtrlPTag<cr>
+nmap <Leader>r :GoDecls<cr>
+imap <Leader>r <esc>:GoDecls<cr>
 
 " Open goto symbol on all buffers
-nmap <M-R> :CtrlPBufTagAll<cr>
-imap <M-R> <esc>:CtrlPBufTagAll<cr>
+nmap <Leader>R :GoDeclsDir<cr>
+imap <Leader>R <esc>:GoDeclsDir<cr>
 
 " Open basic CtrlP
-nmap <M-p> :CtrlP<cr>
-imap <M-p> <esc>:CtrlP<cr>
+nmap <Leader>p :CtrlP<cr>
+imap <Leader>p <esc>:CtrlP<cr>
 
 " CtrlP setup
 let g:ctrlp_cmd = 'CtrlPMixed'
@@ -107,26 +133,6 @@ let g:ctrlp_switch_buffer = 'et'
 let g:ctrlp_use_caching = 1
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
-let g:ctrlp_buftag_types = {'go': '--language-force=go --golang-types=ftv'}
-
-func! MyCtrlPTag()
-	let g:ctrlp_prompt_mappings = {
-		\	'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
-		\	'AcceptSelection("t")': ['<c-t>'],
-		\ }
-	CtrlPBufTag
-endfunc
-command! MyCtrlPTag call MyCtrlPTag()
-
-" DEOPLETE SETUP
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#ignore_sources = {}
-let g:deoplete#ignore_sources._ = ['buffer', 'member', 'tag', 'file']
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-let g:deoplete#sources#go#package_dot = 1
-
-" Use partial fuzzy matches like YouCompleteMe
-call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
 
 " NERDTREE SETUP
 noremap <Leader>n :NERDTreeToggle<cr>
@@ -137,7 +143,6 @@ let NERDTreeShowHidden=1
 " vim-go
 let g:go_fmt_fail_silently = 0
 let g:go_fmt_command = "goimports"
-let g:go_autodetect_gopath = 1
 let g:go_term_enabled = 1
 let g:go_highlight_space_tab_error = 0
 let g:go_highlight_array_whitespace_error = 0

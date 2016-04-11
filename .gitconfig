@@ -42,3 +42,10 @@
   insteadOf = "git://github.com/itsjamie/"
 [url "ssh://git@stash.redspace.com/"]
 	insteadOf = https://stash.redspace.com/scm/
+[alias]
+	co = checkout
+	publish = !BRANCH=$(git rev-parse --abbrev-ref HEAD) && git push -u origin $BRANCH
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true

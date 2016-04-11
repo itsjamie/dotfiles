@@ -31,12 +31,12 @@ alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # Git Aliases
-alias g="git"
+alias gd="git diff"
 alias gs="git status"
 
-# Use NeoVim
-alias vi="nvim"
-alias vim="nvim" 
+# Always use Vim
+alias vi="vim"
+alias vim="nvim"
 
 # File size
 alias fs="stat -f \"%z bytes\""
@@ -52,4 +52,5 @@ alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && 
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
 # Go Aliases
-alias gta="go test $(go list ./... | grep -v \/vendor\/)"
+alias gg="go get -u -v"
+alias gta='go test $(go list ./... | grep -v \/vendor\/)'

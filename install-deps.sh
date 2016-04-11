@@ -2,15 +2,16 @@
 defaults write com.apple.dock persistent-apps -array
 
 # Symlink configuration files
-for file in .{ackrc,aliases,bash_profile,bash_prompt,bashrc,exports,functions,gitconfig,gitignore,inputrc,npmrc}; do
+for file in .{ackrc,aliases,bash_profile,bash_prompt,bashrc,exports,functions,gitconfig,gitignore,inputrc,npmrc,vimrc}; do
   [ -r "$file" ] && ln -s "${PWD}/$file" "${HOME}/$file"
 done
 unset file
 
-# Install vim-plug for neovim
+# Install plug.vim
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-[ -r "init.vim" ] && ln -s "${PWD}/init.vim" "${HOME}/.config/nvim/init.vim"
+
+[ -s ".vimrc" ] && ln -s "${PWD}/.vimrc" "${HOME}/.config/nvim/init.vim"
 
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 source brew.sh
