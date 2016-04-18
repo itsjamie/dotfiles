@@ -96,6 +96,7 @@ set sw=2
 set cmdheight=2
 set completeopt+=menuone
 set completeopt-=preview
+set completeopt+=noselect
 set relativenumber
 set number
 set guifont=Source\ Code\ Pro\ Light\ for\ Powerline:h12
@@ -125,6 +126,8 @@ imap <Leader>R <esc>:GoDeclsDir<cr>
 nmap <Leader>p :CtrlP<cr>
 imap <Leader>p <esc>:CtrlP<cr>
 
+au FileType go nmap <Leader>i <Plug>(go-info)
+
 " CtrlP setup
 let g:ctrlp_cmd = 'CtrlPMixed'
 let g:ctrlp_working_path_mode = 'ra'
@@ -143,7 +146,9 @@ let NERDTreeShowHidden=1
 " vim-go
 let g:go_fmt_fail_silently = 0
 let g:go_fmt_command = "goimports"
-let g:go_term_enabled = 1
+let g:go_term_enabled = 0 " open in statusline
+let g:go_term_mode = "vsplit"
+let g:go_alternate_mode = "vsplit"
 let g:go_highlight_space_tab_error = 0
 let g:go_highlight_array_whitespace_error = 0
 let g:go_highlight_trailing_whitespace_error = 0
@@ -152,6 +157,11 @@ let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_interfaces = 1
 let g:go_highlight_build_constraints = 1
+
+nmap <C-a> :GoAlternate<cr>
+imap <C-a> <esc>:GoAlternate<cr>
+
+
 
 " VIM-JSON SETUP
 let g:vim_json_syntax_conceal = 0
