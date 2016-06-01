@@ -10,6 +10,7 @@ complete -W "NSGlobalDomain" defaults
 
 export EDITOR=/usr/local/bin/nvim
 export GOPATH=~/go
+export CDPATH=$CDPATH:~:$GOPATH/src
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
@@ -41,3 +42,5 @@ for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
   [ -r "$file" ] && source "$file"
 done
 unset file
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"

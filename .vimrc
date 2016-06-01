@@ -6,9 +6,11 @@ Plug 'tomasr/molokai'
 Plug 'fatih/vim-go'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/syntastic'
 " filetype plugins
 Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
@@ -69,6 +71,8 @@ else
 	call deoplete#custom#set('_', 'matchers', ['matcher_full_fuzzy'])
 endif
 
+set exrc " Allow external .vimrcs from being loaded
+set secure " Prevent commands in ^ from running if they could do scary.
 set noerrorbells
 set showcmd
 set noswapfile
@@ -87,9 +91,8 @@ set smartcase " ... but not if it begins with upper case
 set pumheight=10 " completion window max size
 set clipboard^=unnamed
 set clipboard^=unnamedplus
-set lazyredraw
-syntax sync minlines=256
-set synmaxcol=300
+" set lazyredraw
+" syntax sync minlines=300
 set re=1
 set ts=2
 set sw=2
@@ -127,6 +130,7 @@ nmap <Leader>p :CtrlP<cr>
 imap <Leader>p <esc>:CtrlP<cr>
 
 au FileType go nmap <Leader>i <Plug>(go-info)
+nmap <Leader>t :GoTestFunc<CR>
 
 " CtrlP setup
 let g:ctrlp_cmd = 'CtrlPMixed'
@@ -143,25 +147,30 @@ noremap <Leader>f :NERDTreeFind<cr>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif 
 let NERDTreeShowHidden=1
 
+" snytastic
+let g:syntastic_go_checkers = ['gometalinter']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
 " vim-go
 let g:go_fmt_fail_silently = 0
 let g:go_fmt_command = "goimports"
 let g:go_term_enabled = 0 " open in statusline
 let g:go_term_mode = "vsplit"
 let g:go_alternate_mode = "vsplit"
-let g:go_highlight_space_tab_error = 0
-let g:go_highlight_array_whitespace_error = 0
-let g:go_highlight_trailing_whitespace_error = 0
+let g:go_auto_type_info = 0
+let g:go_list_type = "quickfix" " issue with syntastic not showing GoBuild and GoTest output fix
+let g:go_highlight_space_tab_error = 1
+let g:go_highlight_array_whitespace_error = 1
+let g:go_highlight_trailing_whitespace_error = 1
 let g:go_highlight_operators = 0
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_interfaces = 1
+let g:go_highlight_structs = 1
 let g:go_highlight_build_constraints = 1
 
 nmap <C-a> :GoAlternate<cr>
 imap <C-a> <esc>:GoAlternate<cr>
-
-
 
 " VIM-JSON SETUP
 let g:vim_json_syntax_conceal = 0
@@ -169,25 +178,35 @@ let g:vim_json_syntax_conceal = 0
 " Lightline setup
 let g:lightline = {
   \ 	'active': {
-  \ 		'left': [['mode', 'paste'], ['fugitive', 'filename', 'modified', 'ctrlpmark'], ['go']],
-  \		'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']],
+  \ 		'left': [ 
+	\ 			['mode', 'paste'],
+	\				['fugitive', 'filename', 'modified', 'ctrlpmark'], 
+	\				['go'],
+	\			],
+  \			'right': [
+	\				['lineinfo'], 
+	\				['percent'],
+	\				['fileformat', 'fileencoding', 'filetype'],
+	\			],
   \ 	},
-  \	'inactive': {
-  \		'left': [['go']],
-  \	},
-  \	'component_function': {
-  \		'lineinfo': 'LightlineInfo',
-  \		'percent': 'LightlinePercent',
-  \		'modified': 'LightlineModified',
-  \		'filename': 'LightlineFilename',
-  \		'go': 'LightLineGo',
-  \		'fileformat': 'LightLineFileformat',
-  \		'filetype': 'LightLineFiletype',
-  \		'fileencoding': 'LightLineFileencoding',
-  \		'mode': 'LightLineMode',
-  \		'fugitive': 'LightLineFugitive',
-  \		'ctrlpmark': 'CtrlPMark',
-  \	},
+  \		'inactive': {
+  \			'left': [['go']],
+  \		},
+  \		'component_function': {
+  \			'modified': 'LightLineModified',
+	\			'lineinfo': 'LightLineInfo',
+  \			'percent': 'LightLinePercent',
+  \			'filename': 'LightLineFilename',
+  \			'go': 'LightLineGo',
+  \			'fileformat': 'LightLineFileformat',
+  \			'filetype': 'LightLineFiletype',
+  \			'fileencoding': 'LightLineFileencoding',
+  \			'mode': 'LightLineMode',
+  \			'fugitive': 'LightLineFugitive',
+  \			'ctrlpmark': 'LightLineCtrlPMark',
+  \		},
+  \ 	'separator': { 'left': '', 'right': '' },
+  \ 	'subseparator': { 'left': '', 'right': '' },
   \ }
 
 function! LightLineModified()
@@ -200,6 +219,20 @@ function! LightLineModified()
   else
     return ""
   endif
+endfunction
+
+function! LightLineReadonly()
+  if &filetype == "help"
+		return ""
+	elseif &readonly
+		return "RO"
+	else
+		return ""
+	endif	
+endfunction
+
+function! LightLineFugitive()
+  return exists('*fugitive#head') ? fugitive#head() : ''
 endfunction
 
 function! LightLineFileformat()
@@ -220,10 +253,6 @@ endfunction
 
 function! LightLinePercent()
   return &ft =~? 'vimfiler' ? '' : (100 * line('.') / line('$')) . '%'
-endfunction
-
-function! LightLineFugitive()
-  return exists('*fugitive#head') ? fugitive#head() : ''
 endfunction
 
 function! LightLineGo()
@@ -250,11 +279,7 @@ function! LightLineFilename()
         \ ('' != fname ? fname : '[No Name]')
 endfunction
 
-function! LightLineReadonly()
-  return &ft !~? 'help' && &readonly ? 'RO' : ''
-endfunction
-
-function! CtrlPMark()
+function! LightLineCtrlPMark()
   if expand('%:t') =~ 'ControlP'
     call lightline#link('iR'[g:lightline.ctrlp_regex])
     return lightline#concatenate([g:lightline.ctrlp_prev, g:lightline.ctrlp_item
