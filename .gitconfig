@@ -32,6 +32,8 @@
 	insteadOf = https://stash.redspace.com/scm/
 [alias]
 	co = checkout
+	local-branches = !git branch -vv | cut -c 3- | grep -v origin | cut -d ' ' -f 1
+	prune-local = !git local-branches | xargs git branch -d
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
 	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	publish = !BRANCH=$(git rev-parse --abbrev-ref HEAD) && git push -u origin $BRANCH
