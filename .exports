@@ -12,29 +12,25 @@ export MANPAGER="less -X"
 export HISTSIZE=32768
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
-
 # timestamps for bash history 
 export HISTTIMEFORMAT='%F %T '
-
 # Make some common commands not show in history
 export HISTIGNORE="ls:cd:cd -:pwd;exit:date:* --help"
 
-export EDITOR=/usr/local/bin/vim
+export EDITOR=/usr/bin/nvim
 export NPM_HOME=/usr/local/share/npm
+export NVM_DIR=~/.nvm
+export CDPATH=$CDPATH:~:$GOPATH/src
 export GOPATH=~/go
 
 # Construct Path..
-PATH=/usr/bin:/bin:/usr/sbin:/sbin
-
-# Add NPM packages to path
-PATH=$PATH:$NPM_HOME/bin
-
-# Add Go packages to path
+PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/games:/usr/local/games:/snap/bin:$PATH
+# Add Go to path
+PATH=$PATH:/usr/local/go/bin
+# Add Go binaries to path
 PATH=$PATH:$GOPATH/bin
-
-# Homebrew executables are important
-PATH=/usr/local/bin:$PATH
-# Updated GNU Core Utilities
-PATH=`brew --prefix coreutils`/libexec/gnubin:$PATH
-
+# Add GOROOT binaries to path
+PATH=$PATH:/usr/local/go/libexec/bin
+# Add local user binaries to path, with priority
+PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH

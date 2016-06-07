@@ -1,6 +1,3 @@
-# Wipe all app icons from the Dock
-defaults write com.apple.dock persistent-apps -array
-
 # Symlink configuration files
 for file in .{ackrc,aliases,bash_profile,bash_prompt,bashrc,exports,functions,gitconfig,gitignore,inputrc,npmrc,vimrc}; do
   [ -r "$file" ] && ln -s "${PWD}/$file" "${HOME}/$file"

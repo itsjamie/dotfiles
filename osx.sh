@@ -11,6 +11,8 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
+# Wipe all app icons from the Dock
+defaults write com.apple.dock persistent-apps -array
 
 # Disable sound effects on boot
 sudo nvram SystemAudioVolume=" "
