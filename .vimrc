@@ -29,33 +29,31 @@ call plug#end()
 
 "Document the defaults in nvim, and if we use this config in vim, they'll be set
 if !has('nvim')
-  set nocompatible
-  set ttyfast
-  set ttymouse=xterm2
-  set ttyscroll=3
-  set autoindent
-  set autoread
-  set backspace=indent,eol,start
-  set complete=.,w,b,u,t
-  set display=lastline
-  set encoding=utf-8
-  set formatoptions=tcqj
-  set history=10000
-  set hlsearch
-  set incsearch
-  set langnoremap
-  set laststatus=2
-  set listchars=tab:»·,trail:·,nbsp:·
-  set mouse=a
-  set nrformats=bin,hex
-  set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize
-  set smarttab
-  set tags=./tags;,tags
-  set viminfo=!,'100,<50,s10,h
-  set wildmenu
-	
+	set nocompatible
+	set ttyfast
+	set ttymouse=xterm2
+	set ttyscroll=3
+	set autoindent
+	set autoread
+	set backspace=indent,eol,start
+	set complete=.,w,b,u,t
+	set display=lastline
+	set encoding=utf-8
+	set formatoptions=tcqj
+	set history=10000
+	set hlsearch
+	set incsearch
+	set langnoremap
+	set laststatus=2
+	set listchars=tab:»·,trail:·,nbsp:·
+	set mouse=a
+	set nrformats=bin,hex
+	set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize
+	set smarttab
+	set tags=./tags;,tags
+	set viminfo=!,'100,<50,s10,h
+	set wildmenu
 	set t_Co=256
-
 	filetype plugin indent on
 	let g:neocomplete#data_directory = "~/.cache/neocomplete"
 	let g:neocomplete#enable_at_startup = 1
