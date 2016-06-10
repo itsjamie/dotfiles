@@ -23,7 +23,7 @@
 
 [user]
   name = Jamie Stackhouse
-  email = (none)
+  email = "(none)"
 
 # rewrites
 [url "git@github.com:itsjamie/"]
@@ -33,7 +33,9 @@
 [alias]
 	co = checkout
 	local-branches = !git branch -vv | cut -c 3- | grep -v origin | cut -d ' ' -f 1
+	tracking-gone = !git branch -vv | cut -c 3- | grep '\\[.*: gone\\]' | cut -d ' ' -f 1
 	prune-local = !git local-branches | xargs git branch -d
+	prune-tracking-gone = !git tracking-gone | xargs git branch -d
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
 	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	publish = !BRANCH=$(git rev-parse --abbrev-ref HEAD) && git push -u origin $BRANCH
