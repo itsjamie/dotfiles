@@ -17,8 +17,6 @@ export NVM_DIR=~/.nvm
 PATH=/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 # Add Go binaries to path
 PATH=$PATH:$GOPATH/bin
-# Add GOROOT binaries to path
-PATH=$PATH:/usr/local/opt/go/libexec/bin
 # Add Homebrew binaries to path, with priority
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH
