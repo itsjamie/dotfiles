@@ -9,8 +9,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-commentary'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'Konfekt/FastFold'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
+Plug 'pangloss/vim-javascript'
 " filetype plugins
 Plug 'elzr/vim-json', {'for': 'json'}
 Plug 'ekalinin/Dockerfile.vim', {'for' : 'Dockerfile'}
@@ -115,20 +117,28 @@ autocmd FileType json setlocal expandtab shiftwidth=2 tabstop=2
 let mapleader = ","
 let g:mapleader = ","
 
-" Open goto symbol on current buffer
-nmap <Leader>r :GoDecls<cr>
-imap <Leader>r <esc>:GoDecls<cr>
+nmap <Leader>p :set paste<cr>o<esc>"*]p:set nopaste<cr>
+imap <Leader>p <esc>:set paste<cr>o<esc>"*]p:set nopaste<cr>i
+nmap <Leader>s :s/[(,]/&\r/g<cr>:s/)/,\r&/g<cr>  :noh<cr>
 
-" Open goto symbol on all buffers
-nmap <Leader>R :GoDeclsDir<cr>
-imap <Leader>R <esc>:GoDeclsDir<cr>
+
 
 " Open basic CtrlP
-nmap <Leader>p :CtrlP<cr>
-imap <Leader>p <esc>:CtrlP<cr>
+nmap <Leader>c :CtrlP<cr>
+imap <Leader>c <esc>:CtrlP<cr>
 
+" Display statusline info
 au FileType go nmap <Leader>i <Plug>(go-info)
-nmap <Leader>t :GoTestFunc<CR>
+
+" Open goto symbol on current buffer
+au FileType go nmap <Leader>r :GoDecls<cr>
+au FileType go imap <Leader>r <esc>:GoDecls<cr>
+
+" Open goto symbol on all buffers
+au FileType go nmap <Leader>R :GoDeclsDir<cr>
+au FileType go imap <Leader>R <esc>:GoDeclsDir<cr>
+
+au FileType go nmap <Leader>t :GoTestFunc<cr>
 
 " CtrlP setup
 let g:ctrlp_cmd = 'CtrlPMixed'
@@ -160,11 +170,10 @@ let g:go_list_type = "quickfix" " issue with syntastic not showing GoBuild and G
 let g:go_highlight_space_tab_error = 1
 let g:go_highlight_array_whitespace_error = 1
 let g:go_highlight_trailing_whitespace_error = 1
-let g:go_highlight_operators = 0
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
-let g:go_highlight_interfaces = 1
-let g:go_highlight_structs = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
 let g:go_highlight_build_constraints = 1
 
 nmap <C-a> :GoAlternate<cr>

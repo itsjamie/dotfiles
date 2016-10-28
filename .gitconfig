@@ -23,7 +23,7 @@
 
 [user]
   name = Jamie Stackhouse
-  email = "(none)"
+  useConfigOnly = true
 
 # rewrites
 [url "git@github.com:itsjamie/"]

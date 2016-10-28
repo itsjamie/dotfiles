@@ -1,3 +1,5 @@
+[ -r ~/.exports ] && source ~/.exports
+
 # Case insensitive globbing
 shopt -s nocaseglob
 
@@ -7,21 +9,7 @@ shopt -s nocaseglob
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit
 complete -W "NSGlobalDomain" defaults
-
-export EDITOR=/usr/local/bin/nvim
-export GOPATH=~/go
-export CDPATH=$CDPATH:~:$GOPATH/src
-export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-
-PATH=/usr/bin:/bin:/usr/sbin:/sbin:$PATH
-# Add Go binaries to path
-PATH=$PATH:$GOPATH/bin
-# Add GOROOT binaries to path
-PATH=$PATH:/usr/local/opt/go/libexec/bin
-# Add Homebrew binaries to path, with priority
-PATH=/usr/local/bin:/usr/local/sbin:$PATH
-export PATH
 
 # initialize z
 . `brew --prefix`/etc/profile.d/z.sh
@@ -33,14 +21,19 @@ if [ -f `brew --prefix`/share/bash-completion/bash_completion ]; then
   . `brew --prefix`/share/bash-completion/bash_completion
 fi
 
+if [ -f `brew --prefix`/Cellar/rbenv/1.0.0/completions/rbenv.bash ]; then
+	. `brew --prefix`/Cellar/rbenv/1.0.0/completions/rbenv.bash
+fi
+
 # Add completion to gulp tasks
 eval "$(gulp --completion=bash)"
+command rbenv rehash 2>/dev/null
 
 # Load ~/.extra ~/.bash_prompt ~/.exports ~/.aliases and ~/.functions
 # ~/.extra can be used for settings you don't want to commit.
-for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
+for file in ~/.{extra,bash_prompt,aliases,functions}; do
   [ -r "$file" ] && source "$file"
 done
 unset file
 
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+[ -s $HOME/.iterm2_shell_integration.bash ] && source $HOME/.iterm2_shell_integration.bash
