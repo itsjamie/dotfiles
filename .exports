@@ -21,15 +21,17 @@ export EDITOR=/usr/local/bin/nvim
 export AIR_HOME=~/Applications/AIRSDK
 export NPM_HOME=/usr/local/share/npm
 export NVM_DIR=~/.nvm
-export RBENV_SHELL=bash
 export CDPATH=$CDPATH:~:$GOPATH/src
 export GOPATH=~/go
 
+# Construct Path..
+PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/games:/usr/local/games:/snap/bin:$PATH
+# Add Go to path
+PATH=$PATH:/usr/local/opt/go/libexec/bin
 # Add Go binaries to path
 PATH=$PATH:$GOPATH/bin
-# Add GOROOT binaries to path
-PATH=$PATH:/usr/local/go/libexec/bin
+# Add RVM to path
+PATH=$PATH:$HOME/.rvm/bin
 # Add local user binaries to path, with priority
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
-PATH=~/.rbenv/shims:$PATH
 export PATH

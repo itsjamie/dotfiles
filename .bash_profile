@@ -21,13 +21,8 @@ if [ -f `brew --prefix`/share/bash-completion/bash_completion ]; then
   . `brew --prefix`/share/bash-completion/bash_completion
 fi
 
-if [ -f `brew --prefix`/Cellar/rbenv/1.0.0/completions/rbenv.bash ]; then
-	. `brew --prefix`/Cellar/rbenv/1.0.0/completions/rbenv.bash
-fi
-
 # Add completion to gulp tasks
 eval "$(gulp --completion=bash)"
-command rbenv rehash 2>/dev/null
 
 # Load ~/.extra ~/.bash_prompt ~/.exports ~/.aliases and ~/.functions
 # ~/.extra can be used for settings you don't want to commit.
@@ -37,3 +32,4 @@ done
 unset file
 
 [ -s $HOME/.iterm2_shell_integration.bash ] && source $HOME/.iterm2_shell_integration.bash
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
