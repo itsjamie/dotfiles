@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for file in .{ackrc,aliases,bash_profile,bash_linux,bash_prompt,bashrc,exports,functions,gitconfig,gitignore,inputrc,npmrc,vimrc}; do
+for file in .{aliases,exports,functions,gitconfig,gitignore,inputrc}; do
 	[ -r "$file" ] && ln -s "${PWD}/$file" "${HOME}/$file"
 done
 unset file
