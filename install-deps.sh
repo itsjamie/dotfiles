@@ -1,5 +1,5 @@
 # Symlink configuration files
-for file in .{aliases,exports,functions,gitconfig,gitignore,inputrc}; do
+for file in .{aliases,exports,functions,gitconfig,gitignore,inputrc,zshrc}; do
   [ -r "$file" ] && ln -s "${PWD}/$file" "${HOME}/$file"
 done
 unset file
