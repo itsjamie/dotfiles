@@ -23,13 +23,15 @@ export GOPATH=~/go
 export JAVA_HOME=$(/usr/libexec/java_home -v12)
 
 # Construct Path..
-PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin:
+PATH=$PATH:/usr/bin:/bin:/usr/sbin:/sbin
 # Add Go to path
 PATH=$PATH:/usr/local/opt/go/libexec/bin
 # Add Go binaries to path
 PATH=$PATH:$GOPATH/bin
 # Add local user binaries to path, with priority
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
+# Add homebrew
+PATH=$PATH:/opt/homebrew/bin
 PATH=$HOME/bin:$PATH
 
 export PATH
